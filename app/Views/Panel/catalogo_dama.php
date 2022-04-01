@@ -8,14 +8,14 @@
 <!-- CONTENIDO -->
 <?= $this->section("contenido") ?>
     <!-- Content Row -->
-    <a class="btn btn-primary" style="margin-bottom: 15px;" href="<?= route_to('usuario_nuevo');?>">
+    <a class="btn btn-primary" style="margin-bottom: 15px;" href="<?= route_to('nuevo_calzado');?>">
         <i class="fa fa-plus" aria-hidden="true"></i>
-       Nuevo usuario
+       Nuevo calzado
     </a>
     <!-- <div class="row"> -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Todos los usuarios registrados</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nuestro calzado registrado para dama</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,18 +23,22 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Usuario</th>
-                                <th>Rol</th>
-                                <th>Estatus</th>
+                                <th>Calzado</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Usuario</th>
-                                <th>Rol</th>
-                                <th>Estatus</th>
+                                <th>Calzado</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
                                 <th>Acción</th>
                             </tr>
                         </tfoot>
@@ -42,48 +46,38 @@
                             <?php
                                 $contador = 0;
                                 $html= '';
-                                foreach ($usuarios as $usuario) {
-                                    $html.= '
+                                foreach ($calzados_dama as $calzado_dama) {
+                                    $html.='
                                         <tr>
                                             <td>'.++$contador.'</td>
-                                            <td>'.$usuario->nombre_usuario.' '.$usuario->ap_paterno_usuario.' '.$usuario->ap_materno_usuario.'</td>
-                                            <td>'.$usuario->rol.'</td>';
-                                            if ($usuario->estatus_usuario != ESTATUS_HABILITADO){
-                                                $html.='<td>
-                                                        <a href="'.route_to("estatus_usuario", $usuario->id_usuario, ESTATUS_HABILITADO).'" class="btn btn-secondary btn-icon-split btn-sm">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fa fa-eye-slash"></i>
-                                                            </span>
-                                                            <span class="text">Deshabilitado</span>
-                                                        </a>
-                                                    </td>';
-                                            }
-                                            else{
-                                                $html.='<td>
-                                                            <a href="'.route_to('estatus_usuario', $usuario->id_usuario, ESTATUS_DESHABILITADO).'" class="btn btn-success btn-icon-split btn-sm">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fa fa-eye"></i>
-                                                                </span>
-                                                                <span class="text">Habilitado</span>
-                                                            </a>
-                                                        </td>';
-                                            }
-                                    $html.=' <td>
-                                                <a href="'.route_to("detalles_usuario",$usuario->id_usuario).'" class="btn btn-warning btn-icon-split btn-sm">
+                                            <td><img src="'.base_url(IMG_DIR_CALZADOS.$calzado_dama->imagen_calzado).'" alt="imagen_calzado" height="120px"></td>
+                                            <td>'.MARCA_CALZADO[$calzado_dama->marca].'</td>
+                                            <td>'.$calzado_dama->modelo.'</td>
+                                            <td>'.$calzado_dama->talla.'</td>
+                                            <td>$'.$calzado_dama->precio.'</td>
+                                            <td>
+                                                <a href="'.route_to("detalles_calzado",$calzado_dama->id_calzado).'" class="btn btn-warning btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-info-circle"></i>
                                                     </span>
                                                     <span class="text">Editar</span>
-                                                </a>
-                                                <a href="'.route_to("eliminar_usuario",$usuario->id_usuario).'" class="btn btn-danger btn-icon-split btn-sm">
+                                                </a><br>
+                                                <a href="'.route_to("eliminar_calzado_dama",$calzado_dama->id_calzado).'" class="btn btn-danger btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fa fa-trash"></i>
                                                     </span>
                                                     <span class="text">Eliminar</span>
+                                                </a><br>
+                                                <a href="'.route_to("oferta_nueva",$calzado_dama->id_calzado).'" class="btn btn-info btn-icon-split btn-sm">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fa fa-tag"></i>
+                                                    </span>
+                                                    <span class="text">Oferta</span>
                                                 </a>
                                             </td>
-                                        </tr>';
-                                }//end foreach
+                                        </tr>
+                                    ';
+                                }
                                 echo $html;
                             ?>          
                         </tbody>
@@ -104,7 +98,7 @@
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                'processing': true,
+               'processing': true,
                 "responsive": true,
                 "scrollX": true,
                 "language": {
@@ -115,10 +109,10 @@
                     "search":         "Buscar:",
                     "zeroRecords":    "Datos no disponibles por el momento",
                     "paginate": {
-                        "first":      "Primera",
-                        "last":       "Última",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
+                    "first":      "Primera",
+                    "last":       "Última",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
                     },
                 }//End languagee 
             });

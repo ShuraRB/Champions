@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $nombre_pagina ;?> | Champions ligue</title>
+    <title><?= $nombre_pagina ;?> | Champions league</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(RECURSOS_PANEL_VENDOR. 'fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-success" href="<?= route_to('cerrar_acceso');?>">Cerrar</a>
+                        <a class="btn btn-success" href="<?= route_to('cerrar_sesion');?>">Cerrar</a>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login|TenisShop</title>
+    <title>Login|Champions league</title>
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(RECURSOS_PANEL_VENDOR.'fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link
@@ -48,12 +48,12 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(<?= base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/login1.png');?>);"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(<?= base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/login2.jpg');?>);"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                          <h1 class="h4 text-gray-900 mb-4">Bienvenido a Shurashop</h1>
-                                          <h1 class="h4 text-gray-900 mb-4">Ingresa tus credenciales</h1>
+                                          <h1 class="h4 text-gray-900 mb-4">Champions league </h1>
+                                          <h1 class="h4 text-gray-900 mb-4">oficial</h1>
                                     </div>
                                     <?= form_open('validar_acceso',["class"=>"user", "id"=>"formulario-acceso"]);?>
                                         <div class="form-group">
@@ -95,8 +95,8 @@
                                         
                                     <?= form_close();?>
                                     <hr>
-                                    <a href="<?= route_to('inicio');?>" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Regresar a Inicio
+                                    <a href="<?= route_to('inicio');?>" class="btn btn-facebook btn-user btn-block">
+                                        Ir a portal
                                     </a>
                                 </div>
                             </div>

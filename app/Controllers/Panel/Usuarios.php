@@ -7,7 +7,7 @@
 
         private $session;
         private $permitido = TRUE;
-
+ 
         public function __construct(){
             //cargar el permiso roles
             helper('permisos_roles_helper');
@@ -47,14 +47,14 @@
             $datos['nombre_usuario'] = $session->nombre_usuario;
             $datos['email_usuario'] = $session->email_usuario;
             $datos['imagen_usuario'] = ($session->imagen_usuario != NULL) 
-                                            ? base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/'.$session->imagen_usuario) 
-                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/female.png') : base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/male.png'));
+                                            ? base_url(RECURSOS_CONTENIDO.'/imagenes/usuarios/'.$session->imagen_usuario) 
+                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO.'/imagenes/usuarios/female.png') : base_url(RECURSOS_CONTENIDO.'/imagenes/usuarios/male.jpg'));
             $datos['nombre_pagina'] = 'Usuario';
             
             //Datos propios por vista y controlador
             $tabla_usuarios = new \App\Models\Tabla_usuarios;
             $datos['usuarios'] = $tabla_usuarios->data_table_usuarios($session->id_usuario);
-
+            // dd($datos['usuarios']);
             return $datos;
         }//end cargar_datos
 
