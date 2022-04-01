@@ -72,7 +72,14 @@ $routes->post('/registrar_usuario', 'Panel\Usuario_nuevo::registrar', ['as' => '
 $routes->get('/detalles_usuario/(:num)', 'Panel\Usuario_detalles::index/$1', ['as' => 'detalles_usuario']);
 $routes->post('/editar_usuario', 'Panel\Usuario_detalles::editar', ['as' => 'editar_usuario']);
 
-//
+//Producto 
+//Catalogo balon
+$routes->get('/catalogo_balon_panel', 'Panel\Catalogo_balon::index', ['as' => 'catalogo_balon_panel']);
+$routes->get('/eliminar_producto_balon/(:num)', 'Panel\Catalogo_balon::eliminar/$1', ['as' => 'eliminar_producto_balon']);
+//Catalogo Caballero
+$routes->get('/catalogo_caballero_panel', 'Panel\Catalogo_caballero::index', ['as' => 'catalogo_caballero_panel']);
+$routes->get('/eliminar_producto_caballero/(:num)', 'Panel\Catalogo_caballero::eliminar/$1', ['as' => 'eliminar_producto_caballero']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

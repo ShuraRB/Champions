@@ -112,10 +112,10 @@ define("TAREA_USUARIOS",'tarea_usuarios');
 define("TAREA_USUARIO_NUEVO",'tarea_usuario_nuevo');
 define("TAREA_USUARIO_DETALLES",'tarea_usuario_detalles');
 define("TAREA_CATALOGO",'tarea_catalogo');
-define("TAREA_CATALOGO_DAMA",'tarea_catalogo_dama');
+define("TAREA_CATALOGO_BALON",'tarea_catalogo_balon');
 define("TAREA_CATALOGO_CABALLERO",'tarea_catalogo_caballero');
-define("TAREA_CALZADO_NUEVO",'tarea_calzado_nuevo');
-define("TAREA_CALZADO_DETALLES",'tarea_calzado_detalles');
+define("TAREA_PRODUCTO_NUEVO",'tarea_producto_nuevo');
+define("TAREA_PRODUCTO_DETALLES",'tarea_producto_detalles');
 define("TAREA_OFERTA",'tarea_oferta');
 define("TAREA_PERFIL",'tarea_perfil');
 
@@ -165,7 +165,7 @@ define("PERMISOS_ADMIN", array(
     TAREA_USUARIO_NUEVO,
     TAREA_USUARIO_DETALLES,
     TAREA_CATALOGO,
-    TAREA_CATALOGO_DAMA,
+    TAREA_CATALOGO_BALON,
     TAREA_CATALOGO_CABALLERO,
     TAREA_OFERTA,
     TAREA_PERFIL
@@ -174,32 +174,30 @@ define("PERMISOS_ADMIN", array(
 define("PERMISOS_OPERADOR", array(
     TAREA_DASHBOARD,
     TAREA_CATALOGO,
-    TAREA_CATALOGO_DAMA,
+    TAREA_CATALOGO_BALON,
     TAREA_CATALOGO_CABALLERO,
     TAREA_OFERTA,
     TAREA_PERFIL
 ));
 
-define("MARCA_CALZADO", array(
+define("MARCA_PRODUCTO", array(
                         1 => 'Adidas',
                         2 => 'Puma',
-                        3 => 'Nike',
-                        4 => 'Reebok',
-                        5 => 'Vans',
+                        3 => 'Nike'
                   ));
 
-define("TIPO_CALZADO", array(
+define("TIPO_PRODUCTO", array(
                         0 => 'Caballero',
-                        1 => 'Dama',
+                        1 => 'Balon',
                   ));
 
-define("TIPO_CALZADO_DAMA",1);
+define("TIPO_PRODUCTO_BALON",1);
 define("TIPO_CALZADO_CABALLERO",0);
 
 //RUTAS BASE 
-define("RECURSOS_CONTENIDO_IMAGE", "recursos-contenido/images/");
-define("RECURSOS_CONTENIDO_PLUGINS", "recursos-contenido/plugins/");
+// define("RECURSOS_CONTENIDO_IMAGE", "recursos_contenido/imagenes/");
+// define("RECURSOS_CONTENIDO_PLUGINS", "recursos_contenido/plugins/");
 
 //RUTAS PARA LAS IMAGENES
-define("IMG_DIR_USUARIOS","recursos-contenido/images/usuarios");
-define("IMG_DIR_CALZADOS","recursos-contenido/images/calzados/");
+define("IMG_DIR_USUARIOS","recursos_contenido/imagenes/usuarios");
+define("IMG_DIR_PRODUCTOS","recursos_contenido/imagenes/productos/");
