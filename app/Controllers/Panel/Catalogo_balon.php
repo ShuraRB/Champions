@@ -20,12 +20,15 @@
             else{
                 $this->permitido = FALSE;
             }//end else
+            
         }//end constructor
 
         public function index(){
             //verifica si tiene permisos para continuar o no
+            // dd($this->permitido);
             if($this->permitido){
-                return $this->crear_vista("panel/catalogo_balon", $this->cargar_datos());
+                // dd($this->permitido);
+                return $this->crear_vista("panel/catalogo_samsung", $this->cargar_datos());
             }//end if rol permitido
             else{
                 mensaje("No tienes permiso para acceder a este módulo, contacte al administrador", WARNING_ALERT);
@@ -48,27 +51,27 @@
             $datos['email_usuario'] = $session->email_usuario;
             $datos['imagen_usuario'] = ($session->imagen_usuario != NULL) 
                                             ? base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/'.$session->imagen_usuario) 
-                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/female.png') : base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/male.png'));
-
-            //Datos propios por vista y controlador
-            $datos['nombre_pagina'] = 'Catalogo para balon';
+                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/female.png') : base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/male.jpg'));
             
+            //Datos propios por vista y controlador
+            $datos['nombre_pagina'] = 'Catalogo Samsung';
+
             //Cargamos el modelo correspondiente
-            $tabla_productos = new \App\Models\Tabla_productos;
-            $datos['productos_balon'] = $tabla_productos->data_table_productos(TIPO_PRODUCTO_BALON);
+            $tabla_celulares = new \App\Models\Tabla_celulares;
+            $datos['celulares_samsung'] = $tabla_celulares->data_table_celulares(MARCA_CELULAR_SAMSUNG);
 
             return $datos;
         }//end cargar_datos
 
         private function crear_vista($nombre_vista, $contenido = array()){
-            $contenido['menu'] = crear_menu_panel(TAREA_CATALOGO, TAREA_CATALOGO_BALON);
+            $contenido['menu'] = crear_menu_panel(TAREA_CATALOGO, TAREA_CATALOGO_SAMSUNG);
             return view($nombre_vista, $contenido);
         }//end crear_vista
 
         private function eliminar_archivo ($file = NULL){
             if (!empty($file)) {
-                if(file_exists(IMG_DIR_PRODUCTOS.'/'.$file)){
-                    unlink(IMG_DIR_PRODUCTOS.'/'.$file);
+                if(file_exists(IMG_DIR_CELULARES.'/'.$file)){
+                    unlink(IMG_DIR_CELULARES.'/'.$file);
                     return TRUE;
                 }//end if
             }//end if is_null
@@ -79,28 +82,28 @@
 
         // -----------------------------------------------------
         // -----------------------------------------------------
-        public function eliminar($id_producto = 0) {
+        public function eliminar($id_celular = 0) {
             //Cargamos el modelo correspondiente
-            $tabla_productos = new \App\Models\Tabla_productos;
+            $tabla_celulares = new \App\Models\Tabla_celulares;
             //Query
-            $producto = $tabla_productos->obtener_producto($id_producto); 
-            if (!empty($producto)) {
+            $celular = $tabla_celulares->obtener_celular($id_celular); 
+            if (!empty($celular)) {
                 //Borra la imagen del usuario en caso de que tenga
-                $this->eliminar_archivo($producto->imagen_producto);
+                $this->eliminar_archivo($celular->imagen_celular);
                 //Se va a eliminar el usuario
-                if($tabla_productos->delete($id_producto)) {
-                    mensaje("El producto ha sido eliminado exitosamente", SUCCESS_ALERT);
+                if($tabla_celulares->delete($id_celular)) {
+                    mensaje("El celular ha sido eliminado exitosamente", SUCCESS_ALERT);
                 }//end if eliminar
                 else {
-                    mensaje("Hubo un error al eliminar el producto, intenta nuevamente", DANGER_ALERT);
+                    mensaje("Hubo un error al eliminar el celular, intenta nuevamente", DANGER_ALERT);
                 }//end else
 
             }//end if count
             else {
-                mensaje("El producto que deseas eliminar no existe", WARNING_ALERT);
+                mensaje("El celular que deseas eliminar no existe", WARNING_ALERT);
             }//end else count
             //redirecciona al modulo de usuarios
-            return redirect()->to(route_to('catalogo_balon_panel'));
+            return redirect()->to(route_to('catalogo_samsung_panel'));
         }//end eliminar
 
-    }//End Class Catalogo_balon
+    }//End Class Catalogo_samsung

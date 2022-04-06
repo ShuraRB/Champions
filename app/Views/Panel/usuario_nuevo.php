@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-4">                       
                                 <div class="form-group">
                                     <label class="text-dark" for="">Sexo (<font color="red">*</font>):</label><br>
                                     <?php

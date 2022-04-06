@@ -97,12 +97,11 @@ define("RECURSOS_CONTENIDO", "recursos_contenido/");
 //***************************************************************************************** */
 
 //Rutas base
-define("RECURSOS_PORTAL_CSS", "recursos_portal/css/");
-define("RECURSOS_PORTAL_JS", "recursos_portal/js/");
-define("RECURSOS_PORTAL_LIB", "recursos_portal/lib/");
-define("RECURSOS_PORTAL_IMG", "recursos_portal/img/");
-define("RECURSOS_PORTAL_SCSS", "recursos_portal/scss/");
-
+define("RECURSOS_PORTAL_CSS","Recursos_Portal/css/");
+define("RECURSOS_PORTAL_FONTS","Recursos_Portal/fonts/");
+define("RECURSOS_PORTAL_JS","Recursos_Portal/js/");
+define("RECURSOS_PORTAL_IMAGES","Recursos_Portal/images/");
+define("RECURSOS_PORTAL_PLUGINS","Recursos_Portal/plugins/");
 
 //************************************************************************************
 //********************************* CONSTANTES PANEL / TAREA**************************
@@ -123,6 +122,11 @@ define("TAREA_PERFIL",'tarea_perfil');
 //************************************************************************************
 //********************************* CONSTANTES PORTAL / PAGINA************************
 //************************************************************************************
+define("PAGINA_INICIO",'pagina_inicio');
+define("PAGINA_SAMSUNG",'pagina_samsung');
+define("PAGINA_APPLE",'pagina_apple');
+define("PAGINA_GALERIA",'pagina_galeria');
+define("PAGINA_CONTACTO",'pagina_contacto');
 
 
 
@@ -166,6 +170,7 @@ define("PERMISOS_ADMIN", array(
     TAREA_USUARIO_DETALLES,
     TAREA_CATALOGO,
     TAREA_CATALOGO_BALON,
+    TAREA_PRODUCTO_DETALLES,
     TAREA_CATALOGO_CABALLERO,
     TAREA_OFERTA,
     TAREA_PERFIL
@@ -175,6 +180,7 @@ define("PERMISOS_OPERADOR", array(
     TAREA_DASHBOARD,
     TAREA_CATALOGO,
     TAREA_CATALOGO_BALON,
+    TAREA_PRODUCTO_DETALLES,
     TAREA_CATALOGO_CABALLERO,
     TAREA_OFERTA,
     TAREA_PERFIL
@@ -195,9 +201,9 @@ define("TIPO_PRODUCTO_BALON",1);
 define("TIPO_CALZADO_CABALLERO",0);
 
 //RUTAS BASE 
-// define("RECURSOS_CONTENIDO_IMAGE", "recursos_contenido/imagenes/");
-// define("RECURSOS_CONTENIDO_PLUGINS", "recursos_contenido/plugins/");
+define("RECURSOS_CONTENIDO_IMAGE", "recursos_contenido/imagenes/");
+define("RECURSOS_CONTENIDO_PLUGINS", "recursos_contenido/plugins/");
 
 //RUTAS PARA LAS IMAGENES
 define("IMG_DIR_USUARIOS","recursos_contenido/imagenes/usuarios");
-define("IMG_DIR_PRODUCTOS","recursos_contenido/imagenes/productos/");
+define("IMG_DIR_PRODUCTO","recursos_contenido/imagenes/productos/");

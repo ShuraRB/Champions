@@ -35,7 +35,7 @@
         $menu_opcion['submenu'] = array();
         $menu['usuarios'] = $menu_opcion;
 
-        //Pagina Catalogo Dama
+        //Pagina Catalogo samsung
         $menu_opcion = array();
         $menu_opcion['is_active'] = ($pagina_actual == TAREA_CATALOGO) ? TRUE : FALSE ;
         $menu_opcion['href'] = '#';
@@ -43,10 +43,10 @@
         $menu_opcion['icon'] = 'fa fa-book';
         $menu_opcion['submenu'] = array();
             $menu_sub_opcion = array();
-            $menu_sub_opcion['is_active'] = ($sub_pagina_actual == TAREA_CATALOGO_DAMA) ? TRUE : FALSE ;
-            $menu_sub_opcion['href'] = route_to('catalogo_dama_panel');
-            $menu_sub_opcion['text'] = 'Dama';
-            $menu_opcion['submenu']['dama'] = $menu_sub_opcion;
+            $menu_sub_opcion['is_active'] = ($sub_pagina_actual == TAREA_CATALOGO_SAMSUNG) ? TRUE : FALSE ;
+            $menu_sub_opcion['href'] = route_to('catalogo_samsung_panel');
+            $menu_sub_opcion['text'] = 'Samsung';
+            $menu_opcion['submenu']['Samsung'] = $menu_sub_opcion;
             $menu_sub_opcion = array();
             $menu_sub_opcion['is_active'] = ($sub_pagina_actual == TAREA_CATALOGO_CABALLERO) ? TRUE : FALSE ;
             $menu_sub_opcion['href'] = route_to('catalogo_caballero_panel');

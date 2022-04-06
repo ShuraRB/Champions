@@ -1,185 +1,151 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
+    <title><?= $nombre_pagina ;?></title>
     <meta charset="utf-8">
-    <title>Champions Ligue</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Favicon -->
-    <link href="<?= base_url(RECURSOS_PORTAL_IMG.'favicon.ico');?>" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'open-iconic-bootstrap.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'animate.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'owl.carousel.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'owl.theme.default.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'magnific-popup.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'aos.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'ionicons.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'bootstrap-datepicker.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'jquery.timepicker.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'flaticon.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'icomoon.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_CSS.'style.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_PORTAL_PLUGINS.'font-awesome/css/font-awesome.min.css');?>">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    <!-- ============================================================== -->
+    <!-- This page css -->
+    <!-- ============================================================== -->
+    <?= $this->renderSection("css") ?>
+  </head>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <body class="goto-here">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="<?= route_to('inicio'); ?>">Minishop</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
 
-    <!-- Libraries Stylesheet -->
-    <link href="<?= base_url(RECURSOS_PORTAL_LIB.'animate/animate.min.css');?>" rel="stylesheet">
-    <link href="<?= base_url(RECURSOS_PORTAL_LIB.'owlcarousel/assets/owl.carousel.min.css');?>" rel="stylesheet">
-    <link href="<?= base_url(RECURSOS_PORTAL_LIB.'tempusdominus/css/tempusdominus-bootstrap-4.min.css');?>" rel="stylesheet" />
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+          <?= $menu;?>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="<?= base_url(RECURSOS_PORTAL_CSS.'bootstrap.min.css');?>" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="<?= base_url(RECURSOS_PORTAL_CSS.'style.css');?>" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+    <!-- *********************************************** -->
+    <!-- ************* CONTENIDO PRINCIPAL ************* -->
+    <?= $this->renderSection("contenido") ?>
+    <!-- *********************************************** -->
+    <!-- *********************************************** -->
+<!-- Footer -->
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<div class="row">
+      		<div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+						</a>
+					</div>
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Minishop</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
             </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                <li><a href="#" class="py-2 d-block">Journal</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
         </div>
-        <!-- Spinner End -->
+        <div class="row">
+          <div class="col-md-12 text-center">
 
-        <!-- Header Start -->
-        <div class="container-fluid bg-dark px-0">
-            <div class="row gx-0">
-                <div class="col-lg-3 bg-dark d-none d-lg-block">
-                    <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <h1 class="m-0 text-primary text-uppercase">Champions <br> League</h1>
-                    </a>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row gx-0 bg-white d-none d-lg-flex">
-                        <div class="col-lg-7 px-5 text-start">
-                            <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                                <p class="mb-0">Bienvenido</p>
-                            </div>
-                            <!-- <div class="h-100 d-inline-flex align-items-center py-2">
-                                <i class="fa fa-phone-alt text-primary me-2"></i>
-                                <p class="mb-0">+012 345 6789</p>
-                            </div> -->
-                        </div>
-                        <!-- <div class="col-lg-5 px-5 text-end">
-                            <div class="d-inline-flex align-items-center py-2">
-                                <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="" href=""><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div> -->
-                    </div>
-                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                        <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Champions <br> League</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="index.html" class="nav-item nav-link active">Inicio</a>
-                                <a href="about.html" class="nav-item nav-link">Galeria</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tienda</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="booking.html" class="dropdown-item">Jerseys</a>
-                                        <a href="team.html" class="dropdown-item">Balones</a>
-                                    </div>
-                                </div>
-                                <a href="contact.html" class="nav-item nav-link">Contacto</a>
-                            </div>
-                            <!-- <a href="https://htmlcodex.com/hotel-html-template-pro" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Premium Version<i class="fa fa-arrow-right ms-3"></i></a> -->
-                        </div>
-                    </nav>
-                </div>
-            </div>
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
         </div>
-        <!-- Header End -->
+      </div>
+    </footer>
 
 
-        <!-- *********************************************** -->
-        <!-- ************* CONTENIDO PRINCIPAL ************* -->
-        <?= $this->renderSection("contenido") ?>
-        <!-- *********************************************** -->
-        <!-- *********************************************** -->
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container pb-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="bg-primary rounded p-4">
-                            <a href="index.html"><h1 class="text-white text-uppercase mb-3">Champions <br> League</h1></a>
-                            <p class="text-white mb-0">
-								Todo sobre la liga de futbol más importante del mundo
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="<?= base_url(RECURSOS_PORTAL_IMG.'messi.png');?>">
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                        <div class="row gy-5 g-4">
-                            <div class="col-md-6">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="<?= base_url(RECURSOS_PORTAL_IMG.'cr7.png');?>">
-                            </div>
-                            <div class="col-md-6">
-                                <h6 class="section-title text-start text-primary text-uppercase mb-4">Menú</h6>
-                                <a class="btn btn-link" href="">Inicio</a>
-                                <a class="btn btn-link" href="">Galeria</a>
-                                <a class="btn btn-link" href="">Tienda</a>
-                                <a class="btn btn-link" href="">Contacto</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Champions league</a>, All Right Reserved. 
-							
-				
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Inicio</a>
-                                <a href="">Galeria</a>
-                                <a href="">Tienda</a>
-                                <a href="">Contacto</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'wow/wow.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'easing/easing.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'waypoints/waypoints.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'counterup/counterup.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'owlcarousel/owl.carousel.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'tempusdominus/js/moment.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'tempusdominus/js/moment-timezone.min.js');?>"></script>
-    <script src="<?= base_url(RECURSOS_PORTAL_LIB.'tempusdominus/js/tempusdominus-bootstrap-4.min.js');?>"></script>
-
-    <!-- Template Javascript -->
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery-migrate-3.0.1.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'popper.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'bootstrap.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.easing.1.3.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.waypoints.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.stellar.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'owl.carousel.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.magnific-popup.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'aos.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'jquery.animateNumber.min.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'bootstrap-datepicker.js');?>"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'scrollax.min.js');?>"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="<?= base_url(RECURSOS_PORTAL_JS.'google-map.js');?>"></script>
     <script src="<?= base_url(RECURSOS_PORTAL_JS.'main.js');?>"></script>
-</body>
 
+  
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <?= $this->renderSection("js") ?>
+  </body>
 </html>

@@ -41,7 +41,7 @@
                             <div class="col-lg-12">
                                 <center>
                                     <?php
-                                        $foto_perfil = (!empty($usuario->imagen_usuario)) ? $usuario->imagen_usuario : (($usuario->sexo_usuario != SEXO_FEMENINO) ? 'male.png' : 'female.png');
+                                        $foto_perfil = (!empty($usuario->imagen_usuario)) ? $usuario->imagen_usuario : (($usuario->sexo_usuario != SEXO_FEMENINO) ? 'male.jpg' : 'female.png');
                                         $img = array(
                                                         'id' => 'img-preview',
                                                         'src'    => base_url(RECURSOS_CONTENIDO_IMAGE.'usuarios/'.$foto_perfil),

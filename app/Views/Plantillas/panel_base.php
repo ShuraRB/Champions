@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $nombre_pagina ;?> | Champions league</title>
+    <title><?= $nombre_pagina ;?> | Shurashop</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(RECURSOS_PANEL_VENDOR. 'fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">Champions ligue</div>
+                    <div class="sidebar-brand-text mx-3">ShuraShop</div>
                 </a>
                 <!-- MENU LATERAL -->
                 <?= $menu; ?>
@@ -106,7 +106,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Champions 2022</span>
+                            <span>Copyright &copy; ShuraShop 2022</span>
                         </div>
                     </div>
                 </footer>
@@ -129,14 +129,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">¿ <?= $nombre_usuario; ?> estás seguro de cerrar sesión?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">¿estás seguro de cerrar sesión?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="<?= base_url(RECURSOS_CONTENIDO. 'Imagenes/Usuarios/login.png');?>" alt="imagen_usuario" class="img-profile rounded-circle" height="150px"><br>
+                            <img src="<?= $imagen_usuario; ?>" alt="imagen_usuario" class="img-profile rounded-circle" height="150px"><br>
                             Selecciona "Cerrar" si tu estas listo para cerrar sesión.
                         </center>
                     </div>

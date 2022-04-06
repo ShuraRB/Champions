@@ -471,17 +471,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="sign-up">
 												<h4>Contraseña :</h4>
 												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña';}" required="">
-
+												
 											</div>
 											<div class="sign-up">
 												<h4>Confirmar contraseña :</h4>
 												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña';}" required="">
-
+												
 											</div>
 											<div class="sign-up">
 												<input type="submit" value="Registrate ahora" >
 											</div>
-
+											
 										</form>
 									</div>
 									<div class="login-right">

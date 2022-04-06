@@ -39,6 +39,11 @@ $routes->get('/', 'Portal\Inicio::index',['as' => 'inicio']);
 /* --------------------------------------------------------------------
 * PORTAL
 * --------------------------------------------------------------------*/
+$routes->get('/', 'Portal/Inicio::index', ['as'=>'Inicio']);
+$routes->get('/samsung', 'Portal/Samsung::index', ['as'=>'Samsung']);
+$routes->get('/apple', 'Portal/Apple::index', ['as'=>'Apple']);
+$routes->get('/galeria', 'Portal/Galeria::index', ['as'=>'Galeria']);
+$routes->get('/contacto', 'Portal/Contacto::index', ['as'=>'Contacto']);
 
 
 /* --------------------------------------------------------------------
@@ -60,6 +65,7 @@ $routes->get('/mi_perfil', 'Panel\Mi_perfil::index',['as' => 'mi_perfil']);
 //Tarea Cerrar sesion
 $routes->get('/cerrar_sesion', 'Usuario\Cerrar_sesion::index',['as' => 'cerrar_sesion']);
 
+///Usuarios
 //CONSTANTES DEL PANEL
 //Dashboard
 $routes->get('/dashboard', 'Panel\Dashboard::index', ['as' => 'dashboard']);
@@ -72,14 +78,14 @@ $routes->post('/registrar_usuario', 'Panel\Usuario_nuevo::registrar', ['as' => '
 $routes->get('/detalles_usuario/(:num)', 'Panel\Usuario_detalles::index/$1', ['as' => 'detalles_usuario']);
 $routes->post('/editar_usuario', 'Panel\Usuario_detalles::editar', ['as' => 'editar_usuario']);
 
-//Producto 
-//Catalogo balon
-$routes->get('/catalogo_balon_panel', 'Panel\Catalogo_balon::index', ['as' => 'catalogo_balon_panel']);
-$routes->get('/eliminar_producto_balon/(:num)', 'Panel\Catalogo_balon::eliminar/$1', ['as' => 'eliminar_producto_balon']);
-//Catalogo Caballero
-$routes->get('/catalogo_caballero_panel', 'Panel\Catalogo_caballero::index', ['as' => 'catalogo_caballero_panel']);
-$routes->get('/eliminar_producto_caballero/(:num)', 'Panel\Catalogo_caballero::eliminar/$1', ['as' => 'eliminar_producto_caballero']);
+//Catalogo sAMSUNG
+$routes->get('/catalogo_samsung_panel', 'Panel\Catalogo_samsung::index', ['as' => 'catalogo_samsung_panel']);
+$routes->get('/eliminar_celular_samsung/(:num)', 'Panel\Catalogo_samsung::eliminar/$1', ['as' => 'eliminar_celular_samsung']);
+//Editar Samsung
+$routes->get('/detalles_celular/(:num)', 'Panel\Celular_detalles::index/$1', ['as' => 'detalles_celular']);
+$routes->post('/editar_celular', 'Panel\Celular_detalles::editar', ['as' => 'editar_celular']);
 
+//
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -8,10 +8,10 @@
         //instancia de la sesion
         $session = session();
         // d($session);
-        // d(PERMISOS_ADMIN);
-        // d(PERMISOS_ADMIN);
+        // d($tarea);
+        // d(PERMISOS_OPERADOR);
         // d($session->rol_actual);
-        // dd(ROL_SUPERADMIN['clave']);
+        // dd(ROL_OPERADOR['clave']);
         
         switch ($session->rol_actual) {
             case ROL_SUPERADMIN['clave']:
