@@ -35,6 +35,15 @@
         $menu_opcion['submenu'] = array();
         $menu['usuarios'] = $menu_opcion;
 
+        //Tarea Perfil
+        // $menu_opcion = array();
+        // $menu_opcion['is_active'] = ($pagina_actual == TAREA_PERFIL || $pagina_actual == TAREA_PERFIL_DETALLES) ? TRUE : FALSE ;
+        // $menu_opcion['href'] = route_to('perfil_usuario');
+        // $menu_opcion['text'] = 'Perfil de usuario';
+        // $menu_opcion['icon'] = 'fa fa-address-book';
+        // $menu_opcion['submenu'] = array();
+        // $menu['perfil_usuario'] = $menu_opcion;
+
         //Pagina Catalogo balon
         $menu_opcion = array();
         $menu_opcion['is_active'] = ($pagina_actual == TAREA_CATALOGO) ? TRUE : FALSE ;

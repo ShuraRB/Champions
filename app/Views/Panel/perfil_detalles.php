@@ -2,7 +2,7 @@
 <!-- CSS -->
 <?= $this->section("css") ?>
     <!-- BostrapValidator css -->
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_CONTENIDO_PLUGINS.'css/boostrapvalidator.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url(RECURSOS_CONTENIDO.'Plugins/css/boostrapvalidator.min.css');?>">
 
     <!-- Show the validation -->
     <style>
@@ -22,12 +22,6 @@
         .has-success select{
             border-color: green !important;
         }
-        .has-error textarea{
-            border-color: red !important;
-        }
-        .has-success textarea{
-            border-color: green !important;
-        }
     </style>
 <?= $this->endSection(); ?>
 <!-- End  -->
@@ -38,53 +32,44 @@
         <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h5 class="m-0 font-weight-bold text-primary">Editar celular</h5>
+                    <h5 class="m-0 font-weight-bold text-primary">Editar perfil del usuario</h5>
                     <h6>Todos los campos marcados con (<font color="red">*</font>) son obligatorios</h6>
                 </div>
                 <div class="card-body">
-                    <?= form_open_multipart('editar_celular',['id' => 'form-user-register','class' => 'user']); ?>
+                    <?= form_open_multipart('editar_usuario',['id' => 'form-user-update','class' => 'user']); ?>
                         <div class="row">
                             <div class="col-lg-12">
                                 <center>
                                     <?php
+                                        $foto_perfil = (!empty($usuario->imagen_usuario)) ? $usuario->imagen_usuario : (($usuario->sexo_usuario != SEXO_FEMENINO) ? 'male.jpg' : 'female.png');
                                         $img = array(
                                                         'id' => 'img-preview',
-                                                        'src'    => base_url(RECURSOS_CONTENIDO.'imagenes/celulares/'.$celular->imagen_celular),
-                                                        'alt'    => 'celular_para_samsung',
-                                                        'class'  => 'img-profile',
+                                                        'src'    => base_url(RECURSOS_CONTENIDO_IMAGE.'usuarios/'.$foto_perfil),
+                                                        'alt'    => 'Perfil usuario',
+                                                        'class'  => 'img-profile rounded-circle',
                                                         'height' => '150px',
+                                                        'title'  => 'That was quite a night',
                                                     );
                                         echo img($img);
-                                        echo form_input(['type' => 'hidden', 'name' => 'celular_anterior', 'value' => $celular->imagen_celular]);
-                                        echo form_input(['type' => 'hidden', 'name' => 'id_celular', 'value' => $celular->id_celular]);
+                                        echo form_input(['type' => 'hidden', 'name' => 'foto_anterior', 'value' => $usuario->imagen_usuario]);
+                                        echo form_input(['type' => 'hidden', 'name' => 'id_usuario', 'value' => $usuario->id_usuario]);
                                     ?>
-                                </center><br>
+                                </center>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Marca (<font color="red">*</font>):</label>
-                                    <?php
-                                        $select = array('class' => 'form-control form-select',
-                                                            'id' => 'marca-celular'
-                                                            );
-                                        echo form_dropdown('marca_celular', [''=>'Selecciona una marca para el celular']+MARCA_CELULAR, $celular->marca, $select);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Módelo del celular (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Nombre(s) (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'modelo-celular',
-                                            'name' => 'modelo_celular',
+                                            'id' => 'nombre',
+                                            'name' => 'nombre',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'Módelo del celular',
-                                            'value' => $celular->modelo
+                                            'placeholder' => 'Nombre(s)',
+                                            'value' => $usuario->nombre_usuario
                                         );
                                         echo form_input($input);
                                     ?>
@@ -92,15 +77,31 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Color del celular (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Apellido paterno (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'color-celular',
-                                            'name' => 'color_celular',
+                                            'id' => 'apellido-paterno',
+                                            'name' => 'apellido_paterno',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'Color del celular',
-                                            'value' => $celular->color
+                                            'placeholder' => 'Apellido paterno',
+                                            'value' => $usuario->ap_paterno_usuario
+                                        );
+                                        echo form_input($input);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Apellido materno (<font color="red">*</font>):</label>
+                                    <?php
+                                        $input = array(
+                                            'type' => 'text',
+                                            'id' => 'apellido-materno',
+                                            'name' => 'apellido_materno',
+                                            'class' => 'form-control form-control-user',
+                                            'placeholder' => 'Apellido materno',
+                                            'value' => $usuario->ap_materno_usuario
                                         );
                                         echo form_input($input);
                                     ?>
@@ -111,44 +112,37 @@
                         <div class="row">
                             <div class="col-lg-4">                       
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Tamaño del celular (<font color="red">*</font>):</label><br>
+                                    <label class="text-dark" for="">Sexo (<font color="red">*</font>):</label><br>
+                                    <?php
+                                        $select = array('class' => 'form-control form-select',
+                                                            'id' => 'sexo'
+                                                            );
+                                        echo form_dropdown('sexo', [''=>'Selecciona el sexo del usuario']+SEXO, $usuario->sexo_usuario, $select);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">                       
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Rol (<font color="red">*</font>):</label>
+                                    <?php
+                                        $select = array('class' => 'form-control form-select',
+                                                            'id' => 'rol'
+                                                            );
+                                        echo form_dropdown('rol', [''=>'Selecciona el rol del usuario']+ROLES, $usuario->id_rol, $select);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">                       
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Correo electrónico (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'tamaño-celular',
-                                            'name' => 'tamaño_celular',
+                                            'id' => 'email',
+                                            'name' => 'email',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'tamaño del celular',
-                                            'value' => $celular->tamaño
-                                        );
-                                        echo form_input($input);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">                       
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Categoría del celular (<font color="red">*</font>):</label>
-                                    <?php
-                                        $select = array('class' => 'form-control form-select',
-                                                            'id' => 'categoria-celular'
-                                                            );
-                                        echo form_dropdown('categoria_celular', [''=>'Selecciona una categoría para el celular']+MARCA_CELULAR, $celular->compañia, $select);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">                       
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Precio del celular (<font color="red">*</font>):</label>
-                                    <?php
-                                        $input = array(
-                                            'type' => 'number',
-                                            'id' => 'precio-celular',
-                                            'name' => 'precio_celular',
-                                            'class' => 'form-control form-control-user',
-                                            'placeholder' => '0000.00',
-                                            'min' => '1',
-                                            'step' => '0.01',
-                                            'value' => $celular->precio
+                                            'placeholder' => 'correo-electronico@dominio.com',
+                                            'value' => $usuario->email_usuario
                                         );
                                         echo form_input($input);
                                     ?>
@@ -157,31 +151,34 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6">                       
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Destacado (<font color="red">*</font>):</label>
-                                    <?php
-                                        $select = array('class' => 'form-control form-select',
-                                                            'id' => 'destacado-celular'
-                                                            );
-                                        echo form_dropdown('destacado_celular', [''=>'Selecciona una opción para el celular']+CELULAR_DESTACADO, $celular->destacado, $select);
-                                    ?>   
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Descripción (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Contraseña (<font color="blue">opcional</font>):</label>
                                     <?php
                                         $input = array(
-                                            'id' => 'descripcion-area',
-                                            'name' => 'descripcion_celular',
-                                            'placeholder' => 'Escribe aquí la descripción de tu celular...',
-                                            'class' => 'form-control',
-                                            'rows' => '4',
-                                            'value' => $celular->descripcion
+                                            'type' => 'password',
+                                            'id' => 'password',
+                                            'name' => 'password',
+                                            'class' => 'form-control form-control-user',
+                                            'placeholder' => '*******',
                                         );
-                                        echo form_textarea($input);
+                                        echo form_input($input);
                                     ?>      
+                                </div>
+                            </div>
+                            <div class="col-lg-6">                       
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Repetir contraseña (<font color="blue">opcional</font>):</label>
+                                    <?php
+                                        $input = array(
+                                            'type' => 'password',
+                                            'id' => 'repetir-password',
+                                            'name' => 'repeatPassword',
+                                            'class' => 'form-control form-control-user',
+                                            'placeholder' => '*******',
+                                        );
+                                        echo form_input($input);
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -189,12 +186,12 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Imagen del celular (<font color="blue">Opcional</font>):</label>
+                                    <label class="text-dark" for="">Perfil (<font color="blue">opcional</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'file',
-                                            'id' => 'imagen-celular',
-                                            'name' => 'image_celular',
+                                            'id' => 'imagen',
+                                            'name' => 'foto_perfil',
                                             'class' => 'form-control',
                                         );
                                         echo form_input($input);
@@ -204,7 +201,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a class="btn btn-danger" id="bnt-cancelar" href="<?= route_to('catalogo_samsung_panel'); ?>"><i class="fa fa-times"></i> Cancelar</a>
+                            <a class="btn btn-danger" id="bnt-cancelar" href="<?= route_to('usuarios'); ?>"><i class="fa fa-times"></i> Cancelar</a>
                             <?php
                                 $btn_submit = array(
                                                     'name'    => 'btn_submit',
@@ -233,7 +230,7 @@
     <script type="text/javascript" src="<?= base_url(RECURSOS_CONTENIDO_PLUGINS.'js/bostrap-validator.min.js')?>"></script>
     <!--  -->
     <script type="text/javascript">
-        document.getElementById("imagen-celular").onchange = function(e) {
+        document.getElementById("imagen").onchange = function(e) {
             // Se crea un objeto FileReader
             let reader = new FileReader();
             // Se leé el archivo seleccionado y se pasa como argumento al objeto FileReader
@@ -248,7 +245,7 @@
     <!-- Form validation -->
     <script>
         $(document).ready(function () {
-            $('#form-user-register').bootstrapValidator({
+            $('#form-user-update').bootstrapValidator({
                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
                 feedbackIcons: {
                     valid: 'glyphicon glyphicon-ok',
@@ -256,67 +253,79 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    marca_celular: {
+                    nombre: {
                         validators: {
                             notEmpty: {
-                                message: 'La marca del celular es requerida'
+                                message: 'Nombre(s) es requerido'
                             },
                         }//validacion
-                    },//end 
-                    modelo_celular: {
+                    },//end nombre
+                    apellido_paterno: {
                         validators: {
                             notEmpty: {
-                                message: 'Módelo del celular es requerido'
+                                message: 'Apellido paterno es requerido'
                             },
                         }//validacion
-                    },//end 
-                    color_celular: {
+                    },//end apellido_paterno
+                    apellido_materno: {
                         validators: {
                             notEmpty: {
-                                message: 'Color del celular es requerido'
+                                message: 'Apellido materno es requerido'
                             },
                         }//validacion
-                    },//end 
-                    tamaño_celular: {
+                    },//end apellido_materno
+                    sexo: {
                         validators: {
                             notEmpty: {
-                                message: 'tamaño del celular es requerida'
+                                message: 'Sexo es requerido'
                             },
                         }//validacion
-                    },//end 
-                    categoria_celular: {
+                    },//end sexo
+                    rol: {
                         validators: {
                             notEmpty: {
-                                message: 'La categoría del celular es requerida'
+                                message: 'Rol es requerido'
                             },
                         }//validacion
-                    },//end 
-                    precio_celular: {
+                    },//end rol
+                    email: {
                         validators: {
                             notEmpty: {
-                                message: 'Precio del celular es requerida'
+                                message: 'Email es requerido'
                             },
+                            emailAddress: {
+                                message: 'Email esta mal formado (ejemplo@live.com).'
+                            }
                         }//validacion
-                    },//end 
-                    destacado_celular: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Precio del celular es requerida'
-                            },
-                        }//validacion
-                    },//end 
-                    descripcion_celular: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Descripción del celular es requerida'
-                            },
-                        }//validacion
-                    },//end 
-                    image_celular: {
+                    },//end email
+                    password: {
                         validators: {
                             // notEmpty: {
-                            //     message: 'La imagen del celular es requerida'
+                            //     message: 'Contraseña es requerida.'
                             // },
+                            stringLength: {
+                                min: 6,
+                                message: 'La contraseña debe tener como minimo 6 caracteres.'
+                            }
+                        }
+                    },//end password
+                    repeatPassword: {
+                        validators: {
+                            // notEmpty: {
+                            //     message: 'Repetir contraseña es requerida.'
+                            // },
+                            stringLength: {
+                                min: 6,
+                                message: 'Repetir contraseña debe tener como minimo 6 caracteres.'
+                            },
+                            identical: {
+                                field: 'password',
+                                message: 'Repetir contraseña es diferente a la anterior'
+                            },
+                        }
+                    },//end password
+                    foto_perfil: {
+                        validators: {
                             file: { 
                                 extension: 'jpeg,jpg,png',
                                 type: 'image/jpeg,image/png',

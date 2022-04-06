@@ -78,6 +78,8 @@ $routes->post('/registrar_usuario', 'Panel\Usuario_nuevo::registrar', ['as' => '
 $routes->get('/detalles_usuario/(:num)', 'Panel\Usuario_detalles::index/$1', ['as' => 'detalles_usuario']);
 $routes->post('/editar_usuario', 'Panel\Usuario_detalles::editar', ['as' => 'editar_usuario']);
 
+//Usuarios
+$routes->get('/perfil_usuario', 'Panel\Perfil_usuario::index', ['as' => 'perfil_usuario']);
 //Producto 
 //Catalogo balon
 $routes->get('/catalogo_balon_panel', 'Panel\Catalogo_balon::index', ['as' => 'catalogo_balon_panel']);
