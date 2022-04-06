@@ -197,6 +197,10 @@ define("TIPO_PRODUCTO", array(
                         1 => 'Balon',
                   ));
 
+define("PRODUCTO_DESTACADO", array(
+                    0 => 'No',
+                    1 => 'Si'
+                ));
 define("TIPO_PRODUCTO_BALON",1);
 define("TIPO_CALZADO_CABALLERO",0);
 

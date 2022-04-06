@@ -3,7 +3,7 @@
     use App\Controllers\BaseController;
     use App\Libraries\Permisos;
 
-    class Celular_detalles extends BaseController{
+    class Producto_detalles extends BaseController{
 
         private $session;
         private $permitido = TRUE;
@@ -14,27 +14,24 @@
             //instancia de la sesion
             $session = session();
             //Verifica si el usuario logeado cuenta con los permiso de esta area
-            if (acceso_usuario(TAREA_CELULAR_DETALLES)) {
-                $session->tarea_actual = TAREA_CELULAR_DETALLES;
+            if (acceso_usuario(TAREA_PRODUCTO_DETALLES)) {
+                $session->tarea_actual = TAREA_PRODUCTO_DETALLES;
             }//end if 
             else{
                 $this->permitido = FALSE;
             }//end else
         }//end constructor
 
-        public function index($id_celular = NULL){
+        public function index($id_producto = NULL){
             //verifica si tiene permisos para continuar o no
-            
             if($this->permitido){
-                // dd($id_celular);
-                $tabla_celulares = new \App\Models\Tabla_celulares;
-                if($tabla_celulares->find($id_celular) == null){
-                    mensaje('No se encuentra el celular propocionado.', WARNING_ALERT);
+                $tabla_producto = new \App\Models\Tabla_producto;
+                if($tabla_producto->find($id_producto) == null){
+                    mensaje('No se encuentra el producto propocionado.', WARNING_ALERT);
                     return redirect()->to(route_to('usuarios'));
                 }//end if no existe el usuario
                 else{
-                   
-                    return $this->crear_vista("Panel/celular_detalles", $this->cargar_datos($id_celular));
+                    return $this->crear_vista("panel/producto_detalles", $this->cargar_datos($id_producto));
                 }//end else no existe el usuario
             }//end if rol permitido
             else{
@@ -43,7 +40,7 @@
             }//end else rol no permitido
         }//end index
 
-        private function cargar_datos($id_celular = NULL){
+        private function cargar_datos($id_producto = NULL){
             //======================================================================
             //==========================DATOS FUNDAMENTALES=========================
             //======================================================================
@@ -57,16 +54,17 @@
             $datos['nombre_usuario'] = $session->nombre_usuario;
             $datos['email_usuario'] = $session->email_usuario;
             $datos['imagen_usuario'] = ($session->imagen_usuario != NULL) 
-                                            ? base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/'.$session->imagen_usuario) 
-                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/female.png') : base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/male.png'));
-            //Cargamos el modelo correspondiente
-            $tabla_celulares = new \App\Models\Tabla_celulares;
-            $celular = $tabla_celulares->obtener_celular($id_celular);
+                                            ? base_url(RECURSOS_CONTENIDO.'Imagenes/Usuarios/'.$session->imagen_usuario) 
+                                            : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO.'Imagenes/Usuarios/female.png') : base_url(RECURSOS_CONTENIDO.'Imagenes/Usuarios/male.jpg'));
 
             //Datos propios por vista y controlador
-            $datos['nombre_pagina'] = 'Detalles del celular: '.$celular->modelo;
-            $datos['celular'] = $celular;
-            // dd($datos['celular']);
+            $tabla_producto = new \App\Models\Tabla_producto;
+            $producto = $tabla_producto->obtener_producto($id_producto);
+
+            //Datos propios por vista y controlador
+            $datos['nombre_pagina'] = 'Detalles del producto: '.$producto->modelo;
+            $datos['producto'] = $producto;
+            // dd($datos['producto']);
             return $datos;
         }//end cargar_datos
 
@@ -86,7 +84,7 @@
             if($file_size <= 2097152 &&
                 ($file_extension == 'jpeg' || $file_extension == 'jpg' || $file_extension == 'png') &&
                 $file_info['width'] <= 1200 && $file_info['height'] <= 1200){
-                $file->move(IMG_DIR_CELULARES, $file_name);
+                $file->move(IMG_DIR_producto, $file_name);
                 return $file_name;
             }//end if la imagen cumple con los requisitos
             else{
@@ -98,8 +96,8 @@
         private function eliminar_archivo ($file = NULL){
             
             if (!empty($file)) {
-                if(file_exists(IMG_DIR_CELULARES.'/'.$file)){
-                    unlink(IMG_DIR_CELULARES.'/'.$file);
+                if(file_exists(IMG_DIR_PRODUCTO.'/'.$file)){
+                    unlink(IMG_DIR_PRODUCTO.'/'.$file);
                     return TRUE;
                 }//end if
             }//end if is_null
@@ -111,40 +109,40 @@
         // -----------------------------------------------------
         // -----------------------------------------------------
         public function editar() {
-            $id_celular = $this->request->getPost('id_celular');
-            $celular_anterior = $this->request->getPost('celular_anterior');
+            $id_producto = $this->request->getPost('id_producto');
+            $producto_anterior = $this->request->getPost('producto_anterior');
 
             ///Cargamos el modelo correspondiente
-            $tabla_celulares = new \App\Models\Tabla_celulares;
+            $tabla_producto = new \App\Models\Tabla_producto;
 
             //Declaración del arreglo 
-            $celular = array();
-            $celular['estatus_celular'] = ESTATUS_HABILITADO;
-            $celular['marca'] = $this->request->getPost('marca_celular');
-            $celular['compañia'] = $this->request->getPost('compañia_celular');
-            $celular['modelo'] = $this->request->getPost('modelo_celular');
-            $celular['color'] = $this->request->getPost('color_celular');
-            $celular['tamaño'] = $this->request->getPost('tamaño_celular');
-            $celular['precio'] = $this->request->getPost('precio_celular');
-            $celular['descripcion'] = $this->request->getPost('descripcion_celular');
-            $celular['destacado'] = $this->request->getPost('destacado_celular');
-            $celular['fecha'] = fecha_actual();
+            $producto = array();
+            $producto['estatus_producto'] = ESTATUS_HABILITADO;
+            $producto['marca'] = $this->request->getPost('marca_producto');
+            $producto['modelo'] = $this->request->getPost('modelo_producto');
+            $producto['color'] = $this->request->getPost('color_producto');
+            $producto['tamaño'] = $this->request->getPost('tamaño_producto');
+            $producto['tipo'] = $this->request->getPost('categoria_producto');
+            $producto['precio'] = $this->request->getPost('precio_producto');
+            $producto['descripcion'] = $this->request->getPost('descripcion_producto');
+            $producto['destacado'] = $this->request->getPost('destacado_producto');
+            $producto['fecha'] = fecha_actual();
             //verificar si tiene algo el input de file
-            if(!empty($this->request->getFile('image_celular')) && $this->request->getFile('image_celular')->getSize() > 0){
-                $this->eliminar_archivo($celular_anterior);
-                $celular['imagen_celular'] = $this->subir_archivo($this->request->getFile('image_celular'));
+            if(!empty($this->request->getFile('image_producto')) && $this->request->getFile('image_producto')->getSize() > 0){
+                $this->eliminar_archivo($producto_anterior);
+                $producto['imagen_producto'] = $this->subir_archivo($this->request->getFile('image_producto'));
             }//end if existe imagen
 
-            if($tabla_celulares->update($id_celular, $celular) > 0){
-                mensaje("La información del celular ha sido actualizada exitosamente", SUCCESS_ALERT);
+            if($tabla_producto->update($id_producto, $producto) > 0){
+                mensaje("La información del producto ha sido actualizada exitosamente", SUCCESS_ALERT);
                 // return redirect()->to(route_to('usuarios'));
-                return ($celular['compañia']  != COMPAÑIA_CELULAR) ? redirect()->to(route_to('catalogo_apple_panel')) : redirect()->to(route_to('catalogo_samsung_panel')) ;
+                return ($producto['tipo']  != TIPO_PRODUCTO) ? redirect()->to(route_to('dashboard')) : redirect()->to(route_to('dashboard')) ;
             }//end if se actualiza el usuario
             else{
-                mensaje("Hubo un error al actualizar la información del celular. Intente nuevamente, por favor", DANGER_ALERT);
-                return redirect()->to(route_to('editar_celular',$id_celular));
+                mensaje("Hubo un error al actualizar la información del producto. Intente nuevamente, por favor", DANGER_ALERT);
+                return redirect()->to(route_to('dashboard',$id_producto));
             }//end else se inserta el usuario
             
         }//end editar
 
-    }//End Class celular_detalles
+    }//End Class producto_detalles

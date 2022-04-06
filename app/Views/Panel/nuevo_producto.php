@@ -22,6 +22,12 @@
         .has-success select{
             border-color: green !important;
         }
+        .has-error textarea{
+            border-color: red !important;
+        }
+        .has-success textarea{
+            border-color: green !important;
+        }
     </style>
 <?= $this->endSection(); ?>
 <!-- End  -->
@@ -32,27 +38,23 @@
         <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h5 class="m-0 font-weight-bold text-primary">Editar usuario</h5>
+                    <h5 class="m-0 font-weight-bold text-primary">Registrar nuevo producto</h5>
                     <h6>Todos los campos marcados con (<font color="red">*</font>) son obligatorios</h6>
                 </div>
                 <div class="card-body">
-                    <?= form_open_multipart('editar_usuario',['id' => 'form-user-update','class' => 'user']); ?>
+                    <?= form_open_multipart('registrar_producto',['id' => 'form-user-register','class' => 'user']); ?>
                         <div class="row">
                             <div class="col-lg-12">
                                 <center>
                                     <?php
-                                        $foto_perfil = (!empty($usuario->imagen_usuario)) ? $usuario->imagen_usuario : (($usuario->sexo_usuario != SEXO_FEMENINO) ? 'male.jpg' : 'female.png');
                                         $img = array(
                                                         'id' => 'img-preview',
-                                                        'src'    => base_url(RECURSOS_CONTENIDO_IMAGE.'usuarios/'.$foto_perfil),
-                                                        'alt'    => 'Perfil usuario',
+                                                        'src'    => base_url(RECURSOS_CONTENIDO_IMAGE.'iconos/icono.png'),
+                                                        'alt'    => 'Producto_nuevo',
                                                         'class'  => 'img-profile rounded-circle',
                                                         'height' => '150px',
-                                                        'title'  => 'That was quite a night',
                                                     );
                                         echo img($img);
-                                        echo form_input(['type' => 'hidden', 'name' => 'foto_anterior', 'value' => $usuario->imagen_usuario]);
-                                        echo form_input(['type' => 'hidden', 'name' => 'id_usuario', 'value' => $usuario->id_usuario]);
                                     ?>
                                 </center>
                             </div>
@@ -61,15 +63,26 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Nombre(s) (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Marca (<font color="red">*</font>):</label>
+                                    <?php
+                                        $select = array('class' => 'form-control form-select',
+                                                            'id' => 'marca-producto'
+                                                            );
+                                        echo form_dropdown('marca_producto', [''=>'Selecciona una marca para el producto']+MARCA_PRODUCTO, set_value('marca_producto'), $select);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Módelo del producto (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'nombre',
-                                            'name' => 'nombre',
+                                            'id' => 'modelo-producto',
+                                            'name' => 'modelo_producto',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'Nombre(s)',
-                                            'value' => $usuario->nombre_usuario
+                                            'placeholder' => 'Módelo del producto',
+                                            'value' => set_value('modelo_producto')
                                         );
                                         echo form_input($input);
                                     ?>
@@ -77,31 +90,15 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Apellido paterno (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Color del producto (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'apellido-paterno',
-                                            'name' => 'apellido_paterno',
+                                            'id' => 'color-producto',
+                                            'name' => 'color_producto',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'Apellido paterno',
-                                            'value' => $usuario->ap_paterno_usuario
-                                        );
-                                        echo form_input($input);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Apellido materno (<font color="red">*</font>):</label>
-                                    <?php
-                                        $input = array(
-                                            'type' => 'text',
-                                            'id' => 'apellido-materno',
-                                            'name' => 'apellido_materno',
-                                            'class' => 'form-control form-control-user',
-                                            'placeholder' => 'Apellido materno',
-                                            'value' => $usuario->ap_materno_usuario
+                                            'placeholder' => 'Color del producto',
+                                            'value' => set_value('color_producto')
                                         );
                                         echo form_input($input);
                                     ?>
@@ -112,37 +109,44 @@
                         <div class="row">
                             <div class="col-lg-4">                       
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Sexo (<font color="red">*</font>):</label><br>
-                                    <?php
-                                        $select = array('class' => 'form-control form-select',
-                                                            'id' => 'sexo'
-                                                            );
-                                        echo form_dropdown('sexo', [''=>'Selecciona el sexo del usuario']+SEXO, $usuario->sexo_usuario, $select);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">                       
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Rol (<font color="red">*</font>):</label>
-                                    <?php
-                                        $select = array('class' => 'form-control form-select',
-                                                            'id' => 'rol'
-                                                            );
-                                        echo form_dropdown('rol', [''=>'Selecciona el rol del usuario']+ROLES, $usuario->id_rol, $select);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">                       
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Correo electrónico (<font color="red">*</font>):</label>
+                                    <label class="text-dark" for="">Tamaño del producto (<font color="red">*</font>):</label><br>
                                     <?php
                                         $input = array(
                                             'type' => 'text',
-                                            'id' => 'email',
-                                            'name' => 'email',
+                                            'id' => 'tamaño-producto',
+                                            'name' => 'tamaño_producto',
                                             'class' => 'form-control form-control-user',
-                                            'placeholder' => 'correo-electronico@dominio.com',
-                                            'value' => $usuario->email_usuario
+                                            'placeholder' => 'tamaño del producto',
+                                            'value' => set_value('tamaño_producto')
+                                        );
+                                        echo form_input($input);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">                       
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Categoría del producto (<font color="red">*</font>):</label>
+                                    <?php
+                                        $select = array('class' => 'form-control form-select',
+                                                            'id' => 'categoria-producto'
+                                                            );
+                                        echo form_dropdown('categoria_producto', [''=>'Selecciona una categoría para el producto']+TIPO_PRODUCTO, set_value('categoria_producto'), $select);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">                       
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Precio del producto (<font color="red">*</font>):</label>
+                                    <?php
+                                        $input = array(
+                                            'type' => 'number',
+                                            'id' => 'precio-producto',
+                                            'name' => 'precio_producto',
+                                            'class' => 'form-control form-control-user',
+                                            'placeholder' => '0000.00',
+                                            'min' => '1',
+                                            'step' => '0.01',
+                                            'value' => set_value('precio_producto')
                                         );
                                         echo form_input($input);
                                     ?>
@@ -151,34 +155,30 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">                       
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Contraseña (<font color="blue">opcional</font>):</label>
+                                    <label class="text-dark" for="">Destacado (<font color="red">*</font>):</label>
+                                    <?php
+                                        $select = array('class' => 'form-control form-select',
+                                                            'id' => 'destacado-producto'
+                                                            );
+                                        echo form_dropdown('destacado_producto', [''=>'Selecciona una opción para el producto']+PRODUCTO_DESTACADO, set_value('destacado_producto'), $select);
+                                    ?>   
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="text-dark" for="">Descripción (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
-                                            'type' => 'password',
-                                            'id' => 'password',
-                                            'name' => 'password',
-                                            'class' => 'form-control form-control-user',
-                                            'placeholder' => '*******',
+                                            'id' => 'descripcion-area',
+                                            'name' => 'descripcion_producto',
+                                            'placeholder' => 'Escribe aquí la descripción de tu producto...',
+                                            'class' => 'form-control',
+                                            'rows' => '2',
                                         );
-                                        echo form_input($input);
+                                        echo form_textarea($input);
                                     ?>      
-                                </div>
-                            </div>
-                            <div class="col-lg-6">                       
-                                <div class="form-group">
-                                    <label class="text-dark" for="">Repetir contraseña (<font color="blue">opcional</font>):</label>
-                                    <?php
-                                        $input = array(
-                                            'type' => 'password',
-                                            'id' => 'repetir-password',
-                                            'name' => 'repeatPassword',
-                                            'class' => 'form-control form-control-user',
-                                            'placeholder' => '*******',
-                                        );
-                                        echo form_input($input);
-                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -186,12 +186,12 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="text-dark" for="">Perfil (<font color="blue">opcional</font>):</label>
+                                    <label class="text-dark" for="">Imagen del producto (<font color="red">*</font>):</label>
                                     <?php
                                         $input = array(
                                             'type' => 'file',
-                                            'id' => 'imagen',
-                                            'name' => 'foto_perfil',
+                                            'id' => 'imagen_producto',
+                                            'name' => 'imagen_producto',
                                             'class' => 'form-control',
                                         );
                                         echo form_input($input);
@@ -201,7 +201,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a class="btn btn-danger" id="bnt-cancelar" href="<?= route_to('usuarios'); ?>"><i class="fa fa-times"></i> Cancelar</a>
+                            <a class="btn btn-danger" id="bnt-cancelar" href="<?= route_to('catalogo_dama_panel'); ?>"><i class="fa fa-times"></i> Cancelar</a>
                             <?php
                                 $btn_submit = array(
                                                     'name'    => 'btn_submit',
@@ -209,7 +209,7 @@
                                                     'value'   => 'true',
                                                     'type'    => 'submit',
                                                     'class' => 'btn btn-success',
-                                                    'content' => '<i class="fa fa-lg fa-save"></i> Editar',
+                                                    'content' => '<i class="fa fa-lg fa-save"></i> Registrar',
                                                 );
                                 echo form_button($btn_submit);
                             ?>
@@ -230,7 +230,7 @@
     <script type="text/javascript" src="<?= base_url(RECURSOS_CONTENIDO_PLUGINS.'js/bostrap-validator.min.js')?>"></script>
     <!--  -->
     <script type="text/javascript">
-        document.getElementById("imagen").onchange = function(e) {
+        document.getElementById("imagen_producto").onchange = function(e) {
             // Se crea un objeto FileReader
             let reader = new FileReader();
             // Se leé el archivo seleccionado y se pasa como argumento al objeto FileReader
@@ -245,7 +245,7 @@
     <!-- Form validation -->
     <script>
         $(document).ready(function () {
-            $('#form-user-update').bootstrapValidator({
+            $('#form-user-register').bootstrapValidator({
                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
                 feedbackIcons: {
                     valid: 'glyphicon glyphicon-ok',
@@ -253,79 +253,74 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    nombre: {
+                    // marca_producto
+                    // modelo_producto
+                    // color_producto
+                    // tamaño_producto
+                    // categoria_producto
+                    // precio_producto
+                    // image_producto
+                    marca_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Nombre(s) es requerido'
+                                message: 'La marca del producto es requerida'
                             },
                         }//validacion
-                    },//end nombre
-                    apellido_paterno: {
+                    },//end 
+                    modelo_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Apellido paterno es requerido'
+                                message: 'Módelo del producto es requerido'
                             },
                         }//validacion
-                    },//end apellido_paterno
-                    apellido_materno: {
+                    },//end 
+                    color_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Apellido materno es requerido'
+                                message: 'Color del producto es requerido'
                             },
                         }//validacion
-                    },//end apellido_materno
-                    sexo: {
+                    },//end 
+                    tamaño_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Sexo es requerido'
+                                message: 'Tamaño del producto es requerida'
                             },
                         }//validacion
-                    },//end sexo
-                    rol: {
+                    },//end 
+                    categoria_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Rol es requerido'
+                                message: 'La categoría del producto es requerida'
                             },
                         }//validacion
-                    },//end rol
-                    email: {
+                    },//end 
+                    precio_producto: {
                         validators: {
                             notEmpty: {
-                                message: 'Email es requerido'
+                                message: 'Precio del producto es requerida'
                             },
-                            emailAddress: {
-                                message: 'Email esta mal formado (ejemplo@live.com).'
-                            }
                         }//validacion
-                    },//end email
-                    password: {
+                    },//end 
+                    destacado_producto: {
                         validators: {
-                            // notEmpty: {
-                            //     message: 'Contraseña es requerida.'
-                            // },
-                            stringLength: {
-                                min: 6,
-                                message: 'La contraseña debe tener como minimo 6 caracteres.'
-                            }
-                        }
-                    },//end password
-                    repeatPassword: {
-                        validators: {
-                            // notEmpty: {
-                            //     message: 'Repetir contraseña es requerida.'
-                            // },
-                            stringLength: {
-                                min: 6,
-                                message: 'Repetir contraseña debe tener como minimo 6 caracteres.'
+                            notEmpty: {
+                                message: 'Precio del producto es requerida'
                             },
-                            identical: {
-                                field: 'password',
-                                message: 'Repetir contraseña es diferente a la anterior'
-                            },
-                        }
-                    },//end password
-                    foto_perfil: {
+                        }//validacion
+                    },//end 
+                    descripcion_producto: {
                         validators: {
+                            notEmpty: {
+                                message: 'Descripción del producto es requerida'
+                            },
+                        }//validacion
+                    },//end 
+                    image_producto: {
+                        validators: {
+                            notEmpty: {
+                                message: 'La imagen del producto es requerida'
+                            },
                             file: { 
                                 extension: 'jpeg,jpg,png',
                                 type: 'image/jpeg,image/png',

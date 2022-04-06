@@ -78,12 +78,16 @@ $routes->post('/registrar_usuario', 'Panel\Usuario_nuevo::registrar', ['as' => '
 $routes->get('/detalles_usuario/(:num)', 'Panel\Usuario_detalles::index/$1', ['as' => 'detalles_usuario']);
 $routes->post('/editar_usuario', 'Panel\Usuario_detalles::editar', ['as' => 'editar_usuario']);
 
-//Catalogo sAMSUNG
-$routes->get('/catalogo_samsung_panel', 'Panel\Catalogo_samsung::index', ['as' => 'catalogo_samsung_panel']);
-$routes->get('/eliminar_celular_samsung/(:num)', 'Panel\Catalogo_samsung::eliminar/$1', ['as' => 'eliminar_celular_samsung']);
-//Editar Samsung
-$routes->get('/detalles_celular/(:num)', 'Panel\Celular_detalles::index/$1', ['as' => 'detalles_celular']);
-$routes->post('/editar_celular', 'Panel\Celular_detalles::editar', ['as' => 'editar_celular']);
+//Producto 
+//Catalogo balon
+$routes->get('/catalogo_balon_panel', 'Panel\Catalogo_balon::index', ['as' => 'catalogo_balon_panel']);
+$routes->get('/eliminar_producto_balon/(:num)', 'Panel\Catalogo_balon::eliminar/$1', ['as' => 'eliminar_producto_balon']);
+//Editar producto
+$routes->get('/detalles_producto/(:num)', 'Panel\Producto_detalles::index/$1', ['as' => 'detalles_producto']);
+$routes->post('/editar_producto', 'Panel\Producto_detalles::editar', ['as' => 'editar_producto']);
+//Nuevo producto
+$routes->get('/nuevo_producto', 'Panel\Nuevo_producto::index', ['as' => 'nuevo_producto']);
+$routes->post('/registrar_producto', 'Panel\Nuevo_producto::registrar', ['as' => 'registrar_producto']);
 
 //
 /*

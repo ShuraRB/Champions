@@ -54,14 +54,14 @@
             $menu_opcion['submenu']['caballero'] = $menu_sub_opcion;
         $menu['catalogo'] = $menu_opcion;
 
-        //Pagina Ofertas
-        $menu_opcion = array();
-        $menu_opcion['is_active'] = ($pagina_actual == TAREA_OFERTA) ? TRUE : FALSE ;
-        $menu_opcion['href'] = route_to('ofertas');
-        $menu_opcion['text'] = 'Ofertas';
-        $menu_opcion['icon'] = 'fa fa-address-book';
-        $menu_opcion['submenu'] = array();
-        $menu['ofertas'] = $menu_opcion;
+        // //Pagina Ofertas
+        // $menu_opcion = array();
+        // $menu_opcion['is_active'] = ($pagina_actual == TAREA_OFERTA) ? TRUE : FALSE ;
+        // $menu_opcion['href'] = route_to('ofertas');
+        // $menu_opcion['text'] = 'Ofertas';
+        // $menu_opcion['icon'] = 'fa fa-address-book';
+        // $menu_opcion['submenu'] = array();
+        // $menu['ofertas'] = $menu_opcion;
 
         return $menu;
     }//end configurar_menu_portal

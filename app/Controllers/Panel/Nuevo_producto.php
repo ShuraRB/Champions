@@ -3,7 +3,7 @@
     use App\Controllers\BaseController;
     use App\Libraries\Permisos;
 
-    class Nuevo_calzado extends BaseController{
+    class Nuevo_producto extends BaseController{
 
         private $session;
         private $permitido = TRUE;
@@ -25,7 +25,7 @@
         public function index(){
             //verifica si tiene permisos para continuar o no
             if($this->permitido){
-                return $this->crear_vista("panel/nuevo_calzado", $this->cargar_datos());
+                return $this->crear_vista("panel/nuevo_producto", $this->cargar_datos());
             }//end if rol permitido
             else{
                 mensaje("No tienes permiso para acceder a este módulo, contacte al administrador", WARNING_ALERT);
@@ -51,7 +51,7 @@
                                             : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/female.png') : base_url(RECURSOS_CONTENIDO_IMAGE.'/usuarios/male.png'));
 
             //Datos propios por vista y controlador
-            $datos['nombre_pagina'] = 'Nuevo calzado';
+            $datos['nombre_pagina'] = 'Nuevo producto';
             return $datos;
         }//end cargar_datos
 
@@ -72,7 +72,7 @@
             if($file_size <= 2097152 &&
                 ($file_extension == 'jpeg' || $file_extension == 'jpg' || $file_extension == 'png') &&
                 $file_info['width'] <= 512 && $file_info['height'] <= 512){
-                $file->move(IMG_DIR_CALZADOS, $file_name);
+                $file->move(IMG_DIR_PRODUCTO, $file_name);
                 return $file_name;
             }//end if la imagen cumple con los requisitos
             else{
@@ -86,39 +86,38 @@
         public function registrar() {
             
             //Cargamos el modelo correspondiente
-            $tabla_calzados = new \App\Models\Tabla_calzados;
+            $tabla_producto = new \App\Models\Tabla_producto;
 
             //Declaración del arreglo 
-            $calzado = array();
-            $calzado['estatus_calzado'] = ESTATUS_HABILITADO;
-            $calzado['marca'] = $this->request->getPost('marca_calzado');
-            $calzado['modelo'] = $this->request->getPost('modelo_calzado');
-            $calzado['color'] = $this->request->getPost('color_calzado');
-            $calzado['talla'] = $this->request->getPost('talla_calzado');
-            $calzado['genero'] = $this->request->getPost('categoria_calzado');
-            $calzado['precio'] = $this->request->getPost('precio_calzado');
-            $calzado['descripcion'] = $this->request->getPost('descripcion_calzado');
-            $calzado['destacado'] = $this->request->getPost('destacado_calzado');
-            $calzado['fecha'] = fecha_actual();
-            // $usuario['imagen_calzado'] = $this->request->getPost('');
-            // dd($calzado);
+            $producto = array();
+            $producto['estatus_producto'] = ESTATUS_HABILITADO;
+            $producto['marca'] = $this->request->getPost('marca_producto');
+            $producto['modelo'] = $this->request->getPost('modelo_producto');
+            $producto['color'] = $this->request->getPost('color_producto');
+            $producto['tamaño'] = $this->request->getPost('tamaño_producto');
+            $producto['tipo'] = $this->request->getPost('categoria_producto');
+            $producto['precio'] = $this->request->getPost('precio_producto');
+            $producto['descripcion'] = $this->request->getPost('descripcion_producto');
+            $producto['destacado'] = $this->request->getPost('destacado_producto');
+            $producto['fecha'] = fecha_actual();
+            $producto['imagen_producto'] = $this->request->getPost('imagen_producto');
+            // dd($producto);
 
             //verificar si tiene algo el input de file
-            if(!empty($this->request->getFile('image_calzado')) && $this->request->getFile('image_calzado')->getSize() > 0){
-                $calzado['imagen_calzado'] = $this->subir_archivo($this->request->getFile('image_calzado'));
-                if($tabla_calzados->insert($calzado) > 0){
-                    mensaje("El calzado ha sido registrado exitosamente", SUCCESS_ALERT);
-                    return redirect()->to(route_to('catalogo_dama_panel'));
-                }//end if se inserta el usuario
-                else{
-                    mensaje("Hubo un error al registrar el calzao. Intente nuevamente, por favor", DANGER_ALERT);
-                    return $this->index();
-                }//end else se inserta el usuario
+            if(!empty($this->request->getFile('imagen_producto')) && $this->request->getFile('imagen_producto')->getSize() > 0){
+				$producto['imagen_producto'] = $this->subir_archivo($this->request->getFile('imagen_producto'));
 			}//end if existe imagen
+
+            if($tabla_producto->insert($producto) > 0){
+                mensaje("El producto ha sido registrado exitosamente", SUCCESS_ALERT);
+                return redirect()->to(route_to('dashboard'));
+            }//end if se inserta el usuario
             else{
-                mensaje("Hubo error al subir la imagen. Intente nuevamente, por favor", DANGER_ALERT);
-                return $this->index();
-            }//end else 
+                // $tabla_producto->delete($id_producto_insertada);
+                mensaje("Hubo un error al registrar al usuario. Intente nuevamente, por favor", DANGER_ALERT);
+                // return $this->index();
+                return redirect()->to(route_to('dashboard'));
+            }//end else se inserta el usuario
 
 
         }//end registrar
