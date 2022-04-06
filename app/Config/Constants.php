@@ -112,7 +112,7 @@ define("TAREA_USUARIO_NUEVO",'tarea_usuario_nuevo');
 define("TAREA_USUARIO_DETALLES",'tarea_usuario_detalles');
 define("TAREA_CATALOGO",'tarea_catalogo');
 define("TAREA_CATALOGO_BALON",'tarea_catalogo_balon');
-define("TAREA_CATALOGO_CABALLERO",'tarea_catalogo_caballero');
+define("TAREA_CATALOGO_JERSEY",'tarea_catalogo_jersey');
 define("TAREA_PRODUCTO_NUEVO",'tarea_producto_nuevo');
 define("TAREA_PRODUCTO_DETALLES",'tarea_producto_detalles');
 define("TAREA_OFERTA",'tarea_oferta');
@@ -171,7 +171,7 @@ define("PERMISOS_ADMIN", array(
     TAREA_CATALOGO,
     TAREA_CATALOGO_BALON,
     TAREA_PRODUCTO_DETALLES,
-    TAREA_CATALOGO_CABALLERO,
+    TAREA_CATALOGO_JERSEY,
     TAREA_OFERTA,
     TAREA_PERFIL
 ));
@@ -181,7 +181,7 @@ define("PERMISOS_OPERADOR", array(
     TAREA_CATALOGO,
     TAREA_CATALOGO_BALON,
     TAREA_PRODUCTO_DETALLES,
-    TAREA_CATALOGO_CABALLERO,
+    TAREA_CATALOGO_JERSEY,
     TAREA_OFERTA,
     TAREA_PERFIL
 ));
@@ -193,7 +193,7 @@ define("MARCA_PRODUCTO", array(
                   ));
 
 define("TIPO_PRODUCTO", array(
-                        0 => 'Caballero',
+                        0 => 'Jersey',
                         1 => 'Balon',
                   ));
 
@@ -202,7 +202,7 @@ define("PRODUCTO_DESTACADO", array(
                     1 => 'Si'
                 ));
 define("TIPO_PRODUCTO_BALON",1);
-define("TIPO_CALZADO_CABALLERO",0);
+define("TIPO_PRODUCTO_JERSEY",0);
 
 //RUTAS BASE 
 define("RECURSOS_CONTENIDO_IMAGE", "recursos_contenido/imagenes/");

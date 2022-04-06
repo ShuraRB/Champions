@@ -48,10 +48,10 @@
             $menu_sub_opcion['text'] = 'Balon';
             $menu_opcion['submenu']['balon'] = $menu_sub_opcion;
             $menu_sub_opcion = array();
-            $menu_sub_opcion['is_active'] = ($sub_pagina_actual == TAREA_CATALOGO_CABALLERO) ? TRUE : FALSE ;
-            $menu_sub_opcion['href'] = route_to('catalogo_caballero_panel');
-            $menu_sub_opcion['text'] = 'Caballero';
-            $menu_opcion['submenu']['caballero'] = $menu_sub_opcion;
+            $menu_sub_opcion['is_active'] = ($sub_pagina_actual == TAREA_CATALOGO_JERSEY) ? TRUE : FALSE ;
+            $menu_sub_opcion['href'] = route_to('catalogo_jersey_panel');
+            $menu_sub_opcion['text'] = 'Jersey';
+            $menu_opcion['submenu']['jersey'] = $menu_sub_opcion;
         $menu['catalogo'] = $menu_opcion;
 
         // //Pagina Ofertas

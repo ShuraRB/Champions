@@ -3,7 +3,7 @@
     use App\Controllers\BaseController;
     use App\Libraries\Permisos;
 
-    class Catalogo_balon extends BaseController{
+    class Catalogo_jersey extends BaseController{
 
         private $session;
         private $permitido = TRUE;
@@ -14,8 +14,8 @@
             //instancia de la sesion
             $session = session();
             //Verifica si el usuario logeado cuenta con los permiso de esta area
-            if (acceso_usuario(TAREA_CATALOGO_BALON)) {
-                $session->tarea_actual = TAREA_CATALOGO_BALON;
+            if (acceso_usuario(TAREA_CATALOGO_JERSEY)) {
+                $session->tarea_actual = TAREA_CATALOGO_JERSEY;
             }//end if 
             else{
                 $this->permitido = FALSE;
@@ -25,7 +25,7 @@
         public function index(){
             //verifica si tiene permisos para continuar o no
             if($this->permitido){
-                return $this->crear_vista("panel/catalogo_balon", $this->cargar_datos());
+                return $this->crear_vista("panel/catalogo_jersey", $this->cargar_datos());
             }//end if rol permitido
             else{
                 mensaje("No tienes permiso para acceder a este módulo, contacte al administrador", WARNING_ALERT);
@@ -51,17 +51,17 @@
                                             : (($session->sexo_usuario == SEXO_FEMENINO) ? base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/female.png') : base_url(RECURSOS_CONTENIDO.'imagenes/usuarios/male.png'));
 
             //Datos propios por vista y controlador
-            $datos['nombre_pagina'] = 'Catalogo para balon';
+            $datos['nombre_pagina'] = 'Catalogo de Jerseys';
             
             //Cargamos el modelo correspondiente
             $tabla_producto = new \App\Models\Tabla_producto;
-            $datos['producto_balon'] = $tabla_producto->data_table_producto(TIPO_PRODUCTO_BALON);
+            $datos['producto_jersey'] = $tabla_producto->data_table_producto(TIPO_PRODUCTO_JERSEY);
 
             return $datos;
         }//end cargar_datos
 
         private function crear_vista($nombre_vista, $contenido = array()){
-            $contenido['menu'] = crear_menu_panel(TAREA_CATALOGO, TAREA_CATALOGO_BALON);
+            $contenido['menu'] = crear_menu_panel(TAREA_CATALOGO, TAREA_CATALOGO_JERSEY);
             return view($nombre_vista, $contenido);
         }//end crear_vista
 
@@ -100,7 +100,7 @@
                 mensaje("El producto que deseas eliminar no existe", WARNING_ALERT);
             }//end else count
             //redirecciona al modulo de usuarios
-            return redirect()->to(route_to('catalogo_balon_panel'));
+            return redirect()->to(route_to('catalogo_jersey_panel'));
         }//end eliminar
 
-    }//End Class Catalogo_balon
+    }//End Class Catalogo_jersey

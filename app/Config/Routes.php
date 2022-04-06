@@ -88,6 +88,9 @@ $routes->post('/editar_producto', 'Panel\Producto_detalles::editar', ['as' => 'e
 //Nuevo producto
 $routes->get('/nuevo_producto', 'Panel\Nuevo_producto::index', ['as' => 'nuevo_producto']);
 $routes->post('/registrar_producto', 'Panel\Nuevo_producto::registrar', ['as' => 'registrar_producto']);
+//Catalogo JERSEY
+$routes->get('/catalogo_jersey_panel', 'Panel\Catalogo_jersey::index', ['as' => 'catalogo_jersey_panel']);
+$routes->get('/eliminar_producto_jersey/(:num)', 'Panel\Catalogo_jersey::eliminar/$1', ['as' => 'eliminar_producto_jersey']);
 
 //
 /*

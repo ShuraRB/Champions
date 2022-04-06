@@ -12,12 +12,12 @@
     <!-- Content Row -->
     <a class="btn btn-primary" style="margin-bottom: 15px;" href="<?= route_to('nuevo_producto');?>">
         <i class="fa fa-plus" aria-hidden="true"></i>
-       Nuevo Balon
+       Nuevo Jerseys
     </a>
     <!-- <div class="row"> -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Nuestro producto registrado para balon</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nuestro producto registrado para Jerseys</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -48,29 +48,29 @@
                             <?php
                                 $contador = 0;
                                 $html= '';
-                                foreach ($producto_balon as $producto_balon) {
+                                foreach ($producto_jersey as $producto_jersey) {
                                     $html.='
                                         <tr>
                                             <td>'.++$contador.'</td>
-                                            <td><img src="'.base_url(IMG_DIR_PRODUCTO.$producto_balon->imagen_producto).'" alt="imagen_producto" height="120px"></td>
-                                            <td>'.MARCA_PRODUCTO[$producto_balon->marca].'</td>
-                                            <td>'.$producto_balon->modelo.'</td>
-                                            <td>'.$producto_balon->tamaño.'</td>
-                                            <td>$'.$producto_balon->precio.'</td>
+                                            <td><img src="'.base_url(IMG_DIR_PRODUCTO.$producto_jersey->imagen_producto).'" alt="imagen_producto" height="120px"></td>
+                                            <td>'.MARCA_PRODUCTO[$producto_jersey->marca].'</td>
+                                            <td>'.$producto_jersey->modelo.'</td>
+                                            <td>'.$producto_jersey->tamaño.'</td>
+                                            <td>$'.$producto_jersey->precio.'</td>
                                             <td>
-                                                <a href="'.route_to("detalles_producto",$producto_balon->id_producto).'" class="btn btn-warning btn-icon-split btn-sm">
+                                                <a href="'.route_to("detalles_producto",$producto_jersey->id_producto).'" class="btn btn-warning btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-info-circle"></i>
                                                     </span>
                                                     <span class="text">Editar</span>
                                                 </a><br>
-                                                <a href="'.route_to("eliminar_producto_balon",$producto_balon->id_producto).'" class="btn btn-danger btn-icon-split btn-sm">
+                                                <a href="'.route_to("eliminar_producto_jersey",$producto_jersey->id_producto).'" class="btn btn-danger btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fa fa-trash"></i>
                                                     </span>
                                                     <span class="text">Eliminar</span>
                                                 </a><br>
-                                                <a href="'.route_to("oferta_nueva",$producto_balon->id_producto).'" class="btn btn-info btn-icon-split btn-sm">
+                                                <a href="'.route_to("oferta_nueva",$producto_jersey->id_producto).'" class="btn btn-info btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fa fa-tag"></i>
                                                     </span>
